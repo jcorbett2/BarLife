@@ -14,12 +14,12 @@ export default function Signup() {
 
 
       <Text style={styles.title}>Bar Life</Text>
-      <Text style={styles.tagline}>Lets enter the vibe. What's your name?</Text>
-      <TextInput style={styles.input} placeholder="Your Full Name" />
+      <Text style={styles.tagline}>Tap in. What's your username?</Text>
+      <TextInput style={styles.input} placeholder="Your Username" />
 
 
 
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/get_user')}>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/signup')}>
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
