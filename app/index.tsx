@@ -20,7 +20,7 @@ export default function Index() {
         <Text style={styles.createButtonText}>+ CREATE AN ACCOUNT</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.loginButton} onPress={() => alert('Login pressed')}>
+      <TouchableOpacity style={styles.loginButton} onPress={() => router.push('/login')}>
         <Text style={styles.loginButtonText}>LOGIN</Text>
       </TouchableOpacity>
 

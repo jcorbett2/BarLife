@@ -14,12 +14,14 @@ export default function Signup() {
 
 
       <Text style={styles.title}>Bar Life</Text>
-      <Text style={styles.tagline}>Lets enter the vibe. What's your name?</Text>
-      <TextInput style={styles.input} placeholder="Your Full Name" />
+      <Text style={styles.tagline}>Create a password. Make it unique!</Text>
+      <TextInput style={styles.inputOne} placeholder="Password" />
+      <TextInput style={styles.inputTwo} placeholder="Confirm Password" />
 
 
 
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/get_user')}>
+
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/get_pfp')}>
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
@@ -45,7 +47,18 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     color: colors.tagline,
   },
-  input: {
+  inputOne: {
+    width: '75%',
+    height: 40,
+    borderColor: colors.inputBorder,
+    borderWidth: 1,
+    marginBottom: 20,
+    paddingHorizontal: 10,
+    backgroundColor: colors.background,
+    borderRadius: 5,
+    color: colors.inputBorder,
+  },
+  inputTwo: {
     width: '75%',
     height: 40,
     borderColor: colors.inputBorder,

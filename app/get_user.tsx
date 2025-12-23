@@ -19,7 +19,7 @@ export default function Signup() {
 
 
 
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/signup')}>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/get_password')}>
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 50,
+    top: 25,
     left: 20,
     padding: 10,
   },
