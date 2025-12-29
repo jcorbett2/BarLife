@@ -28,7 +28,7 @@ export default function Signup() {
         <Text style={styles.forgotPasswordText}>Forgot Password</Text>
     </TouchableOpacity>
 
-    <TouchableOpacity style={styles.createAccountButton} onPress={() => router.push('/get_name')}>
+    <TouchableOpacity style={styles.createAccountButton} onPress={() => router.push('/create_account')}>
         <Text style={styles.createButtonText}>+ Create Account</Text>
     </TouchableOpacity>
     </View>

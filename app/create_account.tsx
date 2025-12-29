@@ -1,0 +1,185 @@
+import * as ImagePicker from 'expo-image-picker';
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { colors } from './styles/colors';
+
+export default function CreateAccount() {
+  const router = useRouter();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [image, setImage] = useState<string | null>(null);
+
+  const pickImage = async () => {
+    // Request permission
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (status !== 'granted') {
+      Alert.alert('Permission needed', 'Camera roll permissions are required to select a profile picture.');
+      return;
+    }
+
+    // Launch image picker
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1], // Square aspect ratio for profile pictures
+      quality: 0.8,
+    });
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
+
+  const handleCreate = () => {
+    if (!name || !email || !username || !password || !confirmPassword || !image) {
+      Alert.alert('Error', 'Please fill in all fields and select a profile picture.');
+      return;
+    }
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match.');
+      return;
+    }
+    // Here you could save the data to your backend or state management
+    console.log('Account created:', { name, email, username, password, image });
+    // Navigate to login or home
+    router.push('/login');
+  };
+
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+        <Text style={styles.backButtonText}>&lt; Back</Text>
+      </TouchableOpacity>
+
+      <Text style={styles.title}>Bar Life</Text>
+      <Text style={styles.tagline}>Create your account</Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="Your Full Name"
+        value={name}
+        onChangeText={setName}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Your Email"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Your Username"
+        value={username}
+        onChangeText={setUsername}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Confirm Password"
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        secureTextEntry
+      />
+
+      <TouchableOpacity style={styles.imagePickerBox} onPress={pickImage}>
+        <Text style={styles.imagePickerText}>
+          {image ? 'Change Profile Picture' : 'Tap to Select Profile Picture'}
+        </Text>
+        {image && <Text style={styles.selectedText}>✓ Image Selected</Text>}
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={handleCreate}>
+        <Text style={styles.buttonText}>Create Account</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: colors.background,
+  },
+  title: {
+    fontSize: 70,
+    marginBottom: 20,
+    color: colors.text,
+    fontWeight: 'bold',
+  },
+  tagline: {
+    fontSize: 18,
+    marginBottom: 30,
+    color: colors.tagline,
+  },
+  input: {
+    width: '75%',
+    height: 40,
+    borderColor: colors.inputBorder,
+    borderWidth: 1,
+    marginBottom: 15,
+    paddingHorizontal: 10,
+    backgroundColor: colors.background,
+    borderRadius: 5,
+    color: colors.inputBorder,
+  },
+  imagePickerBox: {
+    width: 200,
+    height: 200,
+    borderWidth: 2,
+    borderColor: colors.inputBorder,
+    borderStyle: 'dashed',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 30,
+    backgroundColor: colors.background,
+  },
+  imagePickerText: {
+    color: colors.inputBorder,
+    fontSize: 16,
+    textAlign: 'center',
+    paddingHorizontal: 10,
+  },
+  selectedText: {
+    color: colors.button,
+    fontSize: 14,
+    marginTop: 10,
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: colors.button,
+    padding: 10,
+    borderRadius: 5,
+    width: '75%',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: colors.text,
+    fontSize: 16,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 50,
+    left: 20,
+    padding: 10,
+  },
+  backButtonText: {
+    color: colors.text,
+    fontSize: 16,
+  },
+});
