@@ -33,8 +33,8 @@ export default function GetProfilePicture() {
   const handleNext = () => {
     // Here you could save the image to your backend or state management
     console.log('Selected image:', image);
-    // For now, just navigate to the next screen (you'll need to create this)
-    router.push('/'); // Navigate to home/dashboard
+    // Navigate to the next screen
+    router.push('/get_age');
   };
 
   return (
@@ -53,11 +53,7 @@ export default function GetProfilePicture() {
         {image && <Text style={styles.selectedText}>✓ Image Selected</Text>}
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={[styles.button, !image && styles.buttonDisabled]}
-        onPress={handleNext}
-        disabled={!image}
-      >
+      <TouchableOpacity style={styles.button} onPress={handleNext}>
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
