@@ -8,7 +8,7 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../assets/images/diddy_chud.avif')}
+        source={require('../assets/images/diddy_chud_V2.png')}
         style={styles.logo}
       />
 

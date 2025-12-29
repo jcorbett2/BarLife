@@ -1,16 +1,19 @@
 import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
 import { colors } from './styles/colors';
 
 export default function CreateAccount() {
   const router = useRouter();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [dob, setDob] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [bio, setBio] = useState('');
   const [image, setImage] = useState<string | null>(null);
 
   const pickImage = async () => {
@@ -36,7 +39,7 @@ export default function CreateAccount() {
   };
 
   const handleCreate = () => {
-    if (!name || !email || !username || !password || !confirmPassword || !image) {
+    if (!name || !username || !email || !phone || !dob || !password || !confirmPassword || !bio || !image) {
       Alert.alert('Error', 'Please fill in all fields and select a profile picture.');
       return;
     }
@@ -45,13 +48,13 @@ export default function CreateAccount() {
       return;
     }
     // Here you could save the data to your backend or state management
-    console.log('Account created:', { name, email, username, password, image });
+    console.log('Account created:', { name, username, email, phone, dob, password, bio, image });
     // Navigate to login or home
     router.push('/login');
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.container}>
       <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
         <Text style={styles.backButtonText}>&lt; Back</Text>
       </TouchableOpacity>
@@ -59,12 +62,21 @@ export default function CreateAccount() {
       <Text style={styles.title}>Bar Life</Text>
       <Text style={styles.tagline}>Create your account</Text>
 
+      <Text style={styles.label}>Full Name</Text>
       <TextInput
         style={styles.input}
         placeholder="Your Full Name"
         value={name}
         onChangeText={setName}
       />
+      <Text style={styles.label}>Username</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Your Username"
+        value={username}
+        onChangeText={setUsername}
+      />
+      <Text style={styles.label}>Email</Text>
       <TextInput
         style={styles.input}
         placeholder="Your Email"
@@ -72,12 +84,22 @@ export default function CreateAccount() {
         onChangeText={setEmail}
         keyboardType="email-address"
       />
+      <Text style={styles.label}>Phone Number</Text>
       <TextInput
         style={styles.input}
-        placeholder="Your Username"
-        value={username}
-        onChangeText={setUsername}
+        placeholder="Your Phone Number"
+        value={phone}
+        onChangeText={setPhone}
+        keyboardType="phone-pad"
       />
+      <Text style={styles.label}>Date of Birth</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Date of Birth (MM/DD/YYYY)"
+        value={dob}
+        onChangeText={setDob}
+      />
+      <Text style={styles.label}>Password</Text>
       <TextInput
         style={styles.input}
         placeholder="Password"
@@ -85,12 +107,22 @@ export default function CreateAccount() {
         onChangeText={setPassword}
         secureTextEntry
       />
+      <Text style={styles.label}>Confirm Password</Text>
       <TextInput
         style={styles.input}
         placeholder="Confirm Password"
         value={confirmPassword}
         onChangeText={setConfirmPassword}
         secureTextEntry
+      />
+      <Text style={styles.label}>Bio</Text>
+      <TextInput
+        style={styles.bioInput}
+        placeholder="Bio"
+        value={bio}
+        onChangeText={setBio}
+        multiline
+        numberOfLines={4}
       />
 
       <TouchableOpacity style={styles.imagePickerBox} onPress={pickImage}>
@@ -103,17 +135,22 @@ export default function CreateAccount() {
       <TouchableOpacity style={styles.button} onPress={handleCreate}>
         <Text style={styles.buttonText}>Create Account</Text>
       </TouchableOpacity>
-    </View>
+
+      <TouchableOpacity style={styles.loginButton} onPress={() => router.push('/login')}>
+        <Text style={styles.loginButtonText}>Already have an account?</Text>
+      </TouchableOpacity>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollContainer: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: colors.background,
+  },
+  container: {
     alignItems: 'center',
     padding: 20,
-    backgroundColor: colors.background,
   },
   title: {
     fontSize: 70,
@@ -126,6 +163,12 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     color: colors.tagline,
   },
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+    color: colors.text,
+    width: '75%',
+  },
   input: {
     width: '75%',
     height: 40,
@@ -136,6 +179,19 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     borderRadius: 5,
     color: colors.inputBorder,
+  },
+  bioInput: {
+    width: '75%',
+    height: 100,
+    borderColor: colors.inputBorder,
+    borderWidth: 1,
+    marginBottom: 15,
+    paddingHorizontal: 10,
+    paddingTop: 10,
+    backgroundColor: colors.background,
+    borderRadius: 5,
+    color: colors.inputBorder,
+    textAlignVertical: 'top',
   },
   imagePickerBox: {
     width: 200,
@@ -167,9 +223,22 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: '75%',
     alignItems: 'center',
+    marginBottom: 20,
   },
   buttonText: {
     color: colors.text,
+    fontSize: 16,
+  },
+  loginButton: {
+    backgroundColor: colors.text,
+    padding: 10,
+    borderRadius: 5,
+    width: '75%',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  loginButtonText: {
+    color: colors.background,
     fontSize: 16,
   },
   backButton: {
@@ -177,6 +246,7 @@ const styles = StyleSheet.create({
     top: 50,
     left: 20,
     padding: 10,
+    zIndex: 1,
   },
   backButtonText: {
     color: colors.text,
