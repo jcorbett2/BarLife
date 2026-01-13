@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { colors } from './styles/colors';
+import { colors } from '../styles/colors';
 
 export default function Signup() {
   const router = useRouter();
@@ -14,12 +14,12 @@ export default function Signup() {
 
 
       <Text style={styles.title}>Bar Life</Text>
-      <Text style={styles.tagline}>Tap in. What's your username?</Text>
-      <TextInput style={styles.input} placeholder="Your Username" />
+      <Text style={styles.tagline}>Lets enter the vibe. What's your name?</Text>
+      <TextInput style={styles.input} placeholder="Your Full Name" />
 
 
 
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/get_password')}>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/account-creation/get_user')}>
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>

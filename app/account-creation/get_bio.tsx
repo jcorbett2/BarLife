@@ -1,8 +1,8 @@
 import { useRouter } from 'expo-router';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { colors } from './styles/colors';
+import { colors } from '../styles/colors';
 
-export default function Signup() {
+export default function GetBio() {
   const router = useRouter();
 
   return (
@@ -11,17 +11,16 @@ export default function Signup() {
         <Text style={styles.backButtonText}>&lt; Back</Text>
       </TouchableOpacity>
 
-
-
       <Text style={styles.title}>Bar Life</Text>
-      <Text style={styles.tagline}>Create a password. Make it unique!</Text>
-      <TextInput style={styles.inputOne} placeholder="Password" />
-      <TextInput style={styles.inputTwo} placeholder="Confirm Password" />
+      <Text style={styles.tagline}>Tell us about yourself</Text>
+      <TextInput
+        style={styles.bioInput}
+        placeholder="Enter your bio..."
+        multiline
+        numberOfLines={6}
+      />
 
-
-
-
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/get_pfp')}>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/main-app/home_screen')}>
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
@@ -47,27 +46,18 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     color: colors.tagline,
   },
-  inputOne: {
+  bioInput: {
     width: '75%',
-    height: 40,
+    height: 150,
     borderColor: colors.inputBorder,
     borderWidth: 1,
     marginBottom: 20,
     paddingHorizontal: 10,
+    paddingTop: 10,
     backgroundColor: colors.background,
     borderRadius: 5,
     color: colors.inputBorder,
-  },
-  inputTwo: {
-    width: '75%',
-    height: 40,
-    borderColor: colors.inputBorder,
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingHorizontal: 10,
-    backgroundColor: colors.background,
-    borderRadius: 5,
-    color: colors.inputBorder,
+    textAlignVertical: 'top',
   },
   button: {
     backgroundColor: colors.button,
@@ -82,7 +72,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 50,
+    top: 25,
     left: 20,
     padding: 10,
   },

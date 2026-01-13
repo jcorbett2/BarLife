@@ -16,11 +16,11 @@ export default function Index() {
 
       <Text style={styles.tagline}>Make the most of your nights out.</Text>
 
-      <TouchableOpacity style={styles.createButton} onPress={() => router.push('/get_name')}>
+      <TouchableOpacity style={styles.createButton} onPress={() => router.push('/account-creation/get_name')}>
         <Text style={styles.createButtonText}>+ CREATE AN ACCOUNT</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.loginButton} onPress={() => router.push('/login')}>
+      <TouchableOpacity style={styles.loginButton} onPress={() => router.push('/account-creation/login')}>
         <Text style={styles.loginButtonText}>LOGIN</Text>
       </TouchableOpacity>
 

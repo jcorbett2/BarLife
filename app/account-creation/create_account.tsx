@@ -2,7 +2,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Alert, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
-import { colors } from './styles/colors';
+import { colors } from '../styles/colors';
 
 export default function CreateAccount() {
   const router = useRouter();
@@ -50,7 +50,7 @@ export default function CreateAccount() {
     // Here you could save the data to your backend or state management
     console.log('Account created:', { name, username, email, phone, dob, password, bio, image });
     // Navigate to login or home
-    router.push('/login');
+    router.push('/account-creation/login');
   };
 
   return (
@@ -132,11 +132,11 @@ export default function CreateAccount() {
         {image && <Text style={styles.selectedText}>✓ Image Selected</Text>}
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={handleCreate}>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/main-app/home_screen')}>
         <Text style={styles.buttonText}>Create Account</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.loginButton} onPress={() => router.push('/login')}>
+      <TouchableOpacity style={styles.loginButton} onPress={() => router.push('/account-creation/login')}>
         <Text style={styles.loginButtonText}>Already have an account?</Text>
       </TouchableOpacity>
     </ScrollView>

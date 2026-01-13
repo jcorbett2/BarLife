@@ -2,7 +2,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { colors } from './styles/colors';
+import { colors } from '../styles/colors';
 
 export default function GetProfilePicture() {
   const router = useRouter();
@@ -34,7 +34,7 @@ export default function GetProfilePicture() {
     // Here you could save the image to your backend or state management
     console.log('Selected image:', image);
     // Navigate to the next screen
-    router.push('/get_age');
+    router.push('/account-creation/get_age');
   };
 
   return (

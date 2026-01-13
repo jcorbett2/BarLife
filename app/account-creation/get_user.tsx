@@ -1,8 +1,8 @@
 import { useRouter } from 'expo-router';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { colors } from './styles/colors';
+import { colors } from '../styles/colors';
 
-export default function GetAge() {
+export default function Signup() {
   const router = useRouter();
 
   return (
@@ -11,11 +11,15 @@ export default function GetAge() {
         <Text style={styles.backButtonText}>&lt; Back</Text>
       </TouchableOpacity>
 
-      <Text style={styles.title}>Bar Life</Text>
-      <Text style={styles.tagline}>What's your date of birth?</Text>
-      <TextInput style={styles.input} placeholder="Date of Birth (MM/DD/YYYY)" />
 
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/get_bio')}>
+
+      <Text style={styles.title}>Bar Life</Text>
+      <Text style={styles.tagline}>Tap in. What's your username?</Text>
+      <TextInput style={styles.input} placeholder="Your Username" />
+
+
+
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/account-creation/get_password')}>
         <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
@@ -65,7 +69,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 25,
+    top: 50,
     left: 20,
     padding: 10,
   },

@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { colors } from './styles/colors';
+import { colors } from '../styles/colors';
 
 export default function Signup() {
   const router = useRouter();
@@ -20,7 +20,7 @@ export default function Signup() {
     <Text style={styles.passwordText}>Password</Text>
     <TextInput style={styles.passwordInput} placeholder="Enter password..." secureTextEntry />
 
-    <TouchableOpacity style={styles.loginButton} onPress={() => router.push('/')}>
+    <TouchableOpacity style={styles.loginButton} onPress={() => router.push('/main-app')}>
         <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
 
@@ -28,7 +28,7 @@ export default function Signup() {
         <Text style={styles.forgotPasswordText}>Forgot Password</Text>
     </TouchableOpacity>
 
-    <TouchableOpacity style={styles.createAccountButton} onPress={() => router.push('/create_account')}>
+    <TouchableOpacity style={styles.createAccountButton} onPress={() => router.push('/account-creation/create_account')}>
         <Text style={styles.createButtonText}>+ Create Account</Text>
     </TouchableOpacity>
     </View>
