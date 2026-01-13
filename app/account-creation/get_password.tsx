@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   tagline: {
     fontSize: 18,
     marginBottom: 30,
-    color: colors.tagline,
+    color: colors.subtitle,
   },
   inputOne: {
     width: '75%',

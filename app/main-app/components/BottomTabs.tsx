@@ -12,7 +12,7 @@ export default function BottomTabs({ active }: { active: TabKey }) {
     { key: 'clans', label: 'Clans', icon: 'people-outline', route: '/main-app/clans' },
     { key: 'friends', label: 'Friends', icon: 'person-add-outline', route: '/main-app/friends' },
     { key: 'home', label: 'Home', icon: 'home-outline', route: '/main-app' },
-    { key: 'vibes', label: 'Vibes', icon: 'musical-notes-outline', route: '/main-app/vibes' },
+    { key: 'vibes', label: 'Vibes', icon: 'flame', route: '/main-app/vibes' },
     { key: 'more', label: 'More', icon: 'ellipsis-horizontal', route: '/main-app/more' },
   ]
 

@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   tagline: {
     fontSize: 18,
     marginBottom: 30,
-    color: colors.tagline,
+    color: colors.subtitle,
   },
   imagePickerBox: {
     width: 200,
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   imagePickerText: {
-    color: colors.tagline,
+    color: colors.subtitle,
     fontSize: 16,
     textAlign: 'center',
     paddingHorizontal: 10,

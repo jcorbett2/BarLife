@@ -3,5 +3,6 @@ export const colors = {
   button: '#b18715ff',     // Gold
   text: '#FFFFFF',       // White
   inputBorder: '#808080', // Gray
-  tagline: '#808080',    // Gray
+  subtitle: '#808080',    // Gray
+  buttonText: '#000000ff', // White
 };

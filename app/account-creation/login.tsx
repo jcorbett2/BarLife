@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   forgotPasswordText: {
-    color: colors.tagline,
+    color: colors.subtitle,
     fontSize: 16,
     textDecorationLine: 'underline',
   },
